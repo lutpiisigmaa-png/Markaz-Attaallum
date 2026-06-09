@@ -7,13 +7,24 @@
     <style>
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f4f7fa; /* Background abu-abu terang kebiruan supaya bersih */
+            background-color: #f4f7fa;
             color: #2c3e50;
             margin: 0;
             padding: 0;
-            /* Membuat semua teks otomatis di tengah halaman */
             text-align: center; 
-            padding-top: 150px; 
+            padding-top: 100px; 
+        }
+
+        /* Keyframes untuk Animasi Pop-up */
+        @keyframes popIn {
+            0% {
+                opacity: 0; 
+                transform: scale(0.9) translateY(20px); 
+            }
+            100% {
+                opacity: 1; 
+                transform: scale(1) translateY(0); 
+            }
         }
         
         .hero-section {
@@ -23,12 +34,20 @@
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            /* Memberikan border aksen warna biru di bagian atas kotak */
             border-top: 6px solid #0056b3; 
+
+            /* Terapkan animasi popIn saat halaman load */
+            animation: popIn 0.6s ease-out; 
+        }
+
+        /* CSS untuk mengatur ukuran Logo */
+        .logo-img {
+            max-width: 150px; 
+            height: auto; 
+            margin-bottom: 20px; 
         }
 
         h1 {
-            /* Warna biru utama untuk tulisan Selamat Datang */
             color: #0056b3; 
             font-size: 36px;
             margin-top: 0;
@@ -43,27 +62,30 @@
 
         .btn-admin {
             display: inline-block;
-            background-color: #0056b3; /* Tombol warna biru */
+            background-color: #0056b3;
             color: white;
             text-decoration: none;
             padding: 12px 24px;
             border-radius: 6px;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.2s; 
         }
 
         .btn-admin:hover {
-            background-color: #004494; /* Warna biru agak gelap saat tombol disentuh mouse */
+            background-color: #004494;
+            transform: translateY(-2px); 
         }
     </style>
 </head>
 <body>
 
     <div class="hero-section">
-        <h1>Selamat Datang di Markaz At-Ta'allum</h1>
-        <p>Portal Resmi Informasi dan Administrasi Organisasi</p>
+        <img src="logo.jpeg" alt="Logo Markaz At-Ta'allum" class="logo-img">
         
-        <a href="#" class="btn-admin">Eksplorasi Layanan</a>
+        <h1>Selamat Datang di Markaz At-Ta'allum</h1>
+        <p>Website Resmi Markaz Attaallum</p>
+        
+        <a href="#" class="btn-admin">Lanjut yuu</a>
     </div>
 
 </body>
