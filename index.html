@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markaz At-Ta'allum - Portal Informasi Siswa</title>
     <style>
-        /* 1. DEFINISI WARNA (CSS VARIABLES) - SESUAI REQUEST */
+        /* 1. DEFINISI WARNA (CSS VARIABLES) */
         :root {
             --bg-white: #ffffff;        /* Background Halaman Utama */
-            --bg-dark-blue: #0a192f;    /* Header, Cards, Modal, dan Background Kotak Sambutan */
+            --bg-dark-blue: #0a192f;    /* Header, Cards, Modal, dan Background Kotak */
             --text-dark: #111111;       /* Teks utama pada background putih */
             --text-light: #f0f0f0;      /* Teks pada background biru gelap */
             --accent-blue: #1e40af;     /* Warna tombol dan aksen */
-            --border-color: #1e3a8a;
-            --info-tag-bg: #e0f2fe;     /* Warna background tag "INFO" (biru sangat terang) */
-            --info-tag-text: #075985;   /* Warna teks tag "INFO" */
+            --card-bg: #112240;        /* Warna kotak menu (sedikit lebih terang dari bg) */
+            --text-mute: #a3b1c6;      /* Teks deskripsi abu-abu terang */
         }
 
         /* 2. GLOBAL STYLES */
@@ -57,60 +56,31 @@
 
         .modal-content {
             text-align: center;
-            animation: popIn 0.8s ease-out; /* Animasi pop-in untuk konten modal */
+            animation: popIn 0.8s ease-out; 
         }
 
         .modal-logo {
-            width: 250px;
+            width: 220px;
             margin-bottom: 20px;
         }
 
         .modal-title {
-            font-size: 48px;
+            font-size: 44px;
             font-weight: 800;
             margin-bottom: 10px;
         }
 
         .modal-subtitle {
-            font-size: 20px;
-            color: #a3b1c6;
+            font-size: 18px;
+            color: var(--text-mute);
             margin-bottom: 30px;
         }
-
-        /* Trik sakti mix-blend-mode untuk logo jpeg dengan background hitam */
-        .mix-blend-fix {
-            mix-blend-mode: screen; 
-        }
-
-        /* Loader Dots Animation (Mirip video) */
-        .dots-loader {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        .dot {
-            width: 12px;
-            height: 12px;
-            background-color: var(--accent-blue);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: dotFade 1.2s infinite;
-        }
-        .dot:nth-child(2) { animation-delay: 0.2s; }
-        .dot:nth-child(3) { animation-delay: 0.4s; }
 
         @keyframes popIn {
             0% { opacity: 0; transform: scale(0.9); }
             100% { opacity: 1; transform: scale(1); }
         }
 
-        @keyframes dotFade {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        /* TOMBOL UNTUK MENUTUP MODAL */
         #explore-btn-modal {
             display: inline-block;
             background-color: var(--accent-blue);
@@ -119,7 +89,7 @@
             padding: 12px 24px;
             border-radius: 8px;
             cursor: pointer;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         /* 4. HEADER & NAVIGATION */
@@ -144,7 +114,6 @@
 
         .header-logo {
             width: 40px;
-            border-radius: 50%; /* Membuat logo jpeg kelihatan lebih menyatu */
         }
 
         .header-title {
@@ -164,7 +133,7 @@
             background-color: var(--bg-white);
         }
         #hero h1 { font-size: 48px; margin-bottom: 15px; color: var(--text-dark); }
-        #hero p { font-size: 20px; color: #555; margin-bottom: 40px; }
+        #hero p { font-size: 20px; color: #555; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
 
         .btn-primary {
             display: inline-flex;
@@ -177,37 +146,7 @@
             border-radius: 8px;
         }
 
-        /* 6. SEARCH BAR SECTION */
-        #search-section {
-            padding: 40px 5%;
-            text-align: center;
-            background-color: var(--bg-white);
-        }
-        
-        .search-container {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 16px 20px 16px 50px;
-            border: 2px solid #e2e8f0;
-            border-radius: 30px;
-            font-size: 16px;
-            background-color: #f8fafc;
-        }
-        
-        .search-icon {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #94a3b8;
-        }
-
-        /* 7. MENU UTAMA (saya ingin tau soal...) - CARDS SECTION */
+        /* 6. MENU UTAMA (SAYA INGIN TAU SOAL...) - CARDS SECTION */
         #services {
             padding: 60px 5%;
             background-color: var(--bg-white);
@@ -219,6 +158,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .service-card {
@@ -233,7 +174,7 @@
 
         .service-icon { width: 60px; margin-bottom: 20px; }
         .service-card h3 { font-size: 24px; margin-bottom: 10px; }
-        .service-card p { font-size: 16px; color: #a3b1c6; margin-bottom: 25px; }
+        .service-card p { font-size: 16px; color: var(--text-mute); margin-bottom: 25px; }
 
         .btn-secondary {
             display: inline-flex;
@@ -246,38 +187,7 @@
             border-radius: 6px;
         }
 
-        /* 8. PENGUMUMAN TERBARU SECTION */
-        #announcements {
-            padding: 60px 5%;
-            background-color: var(--bg-white);
-        }
-        #announcements h2 { text-align: center; font-size: 32px; margin-bottom: 40px; }
-
-        .announcements-list { max-width: 800px; margin: 0 auto; }
-
-        .announcement-item {
-            background-color: var(--bg-white);
-            border-bottom: 1px solid #e2e8f0;
-            padding: 20px 0;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .info-tag {
-            background-color: var(--info-tag-bg);
-            color: var(--info-tag-text);
-            font-weight: bold;
-            font-size: 12px;
-            padding: 4px 10px;
-            border-radius: 20px;
-        }
-
-        .announcement-item h3 { font-size: 18px; color: var(--text-dark); flex: 1; }
-
-        .date-container { display: flex; align-items: center; gap: 8px; color: #64748b; font-size: 14px; }
-
-        /* 9. CONNECT SECTION (YUK TERHUBUNGI) */
+        /* 7. CONNECT SECTION (YUK TERHUBUNGI) */
         #connect {
             padding: 60px 5% 100px;
             background-color: var(--bg-white);
@@ -290,25 +200,27 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .contact-card {
             background-color: var(--bg-dark-blue);
             color: var(--text-light);
-            padding: 20px;
-            border-radius: 10px;
+            padding: 25px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             text-align: left;
+            transition: transform 0.3s;
         }
+        .contact-card:hover { transform: translateY(-3px); }
 
-        .contact-icon { width: 30px; }
+        .contact-emoji { font-size: 30px; }
         .contact-details { display: flex; flex-direction: column; }
-        .contact-category { font-size: 12px; color: #a3b1c6; }
-        .contact-value { font-size: 18px; font-weight: bold; }
+        .contact-category { font-size: 12px; color: var(--text-mute); font-weight: bold; }
+        .contact-value { font-size: 18px; font-weight: bold; margin-top: 2px; }
 
     </style>
 </head>
@@ -316,17 +228,16 @@
 
     <div id="entrance-modal">
         <div class="modal-content">
-            <img src="logo.jpeg" alt="Logo Markaz At-Ta'allum" class="modal-logo mix-blend-fix">
+            <img src="logo.png" alt="Logo Markaz At-Ta'allum" class="modal-logo">
             <h1 class="modal-title">Markaz At-Ta'allum</h1>
-            <p class="modal-subtitle">Portal Sakti Informasi dan Administrasi</p>
-            
+            <p class="modal-subtitle">Ruang digital buat teman-teman Markaz. Cek pengumuman, jadwal, dan kumpul tugas jadi lebih gampang.</p>
             <div id="explore-btn-modal">Jelajahi Sekarang 👉</div>
         </div>
     </div>
 
     <header>
         <div class="header-logo-container">
-            <img src="logo.jpeg" alt="Logo" class="header-logo">
+            <img src="logo.png" alt="Logo" class="header-logo">
             <span class="header-title">Markaz At-Ta'allum</span>
         </div>
         <div class="menu-icon">☰</div>
@@ -341,59 +252,28 @@
         </a>
     </section>
 
-    <section id="search-section">
-        <div class="search-container">
-            <span class="search-icon">🔍</span>
-            <input type="text" placeholder="Cari info pelajaran, jadwal, atau formulir..." class="search-input">
-        </div>
-    </section>
-
     <section id="services">
         <h2>Saya ingin tau soal...</h2>
         
         <div class="grid-container">
             <div class="service-card">
-                <img src="logo.jpeg" alt="Ikon Administrasi" class="service-icon mix-blend-fix">
+                <img src="logo.png" alt="Ikon Administrasi" class="service-icon">
                 <h3>Administrasi</h3>
                 <p>Urusan pendaftaran, kumpul tugas, dan formulir. Semua ada di sini.</p>
-                <a href="#" class="btn-secondary">
+                <a href="https://linktr.ee/attaallumofc?utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank" class="btn-secondary">
                     <span>Lihat Detail</span>
                     <span>➜</span>
                 </a>
             </div>
 
             <div class="service-card">
-                <img src="logo.jpeg" alt="Ikon Akademik" class="service-icon mix-blend-fix">
+                <img src="logo.png" alt="Ikon Akademik" class="service-icon">
                 <h3>Informasi Akademik</h3>
                 <p>Cek jadwal, kalender pendidikan, dan kumpulan materi belajarmu.</p>
-                <a href="#" class="btn-secondary">
+                <a href="https://linktr.ee/attaallumofc?utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank" class="btn-secondary">
                     <span>Lihat Detail</span>
                     <span>➜</span>
                 </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="announcements">
-        <h2>Pengumuman Terbaru</h2>
-        
-        <div class="announcements-list">
-            <div class="announcement-item">
-                <span class="info-tag">INFO</span>
-                <h3>Selamat Datang! Website Markaz At-Ta'allum Resmi Diluncurkan.</h3>
-                <div class="date-container">
-                    <span>📅</span>
-                    <span>15 Juni 2026</span>
-                </div>
-            </div>
-
-            <div class="announcement-item">
-                <span class="info-tag">INFO</span>
-                <h3>Pendaftaran Anggota Baru Gelombang II Telah Dibuka.</h3>
-                <div class="date-container">
-                    <span>📅</span>
-                    <span>10 Juni 2026</span>
-                </div>
             </div>
         </div>
     </section>
@@ -403,32 +283,44 @@
         <p class="subtitle">Pantau terus kabar dari Markaz di saluran resmi kita.</p>
         
         <div class="contact-grid">
-            <div class="contact-card">
-                <img src="logo.jpeg" alt="WhatsApp Icon" class="contact-icon mix-blend-fix">
-                <div class="contact-details">
-                    <span class="contact-category">SALURAN</span>
-                    <span class="contact-value">Markaz At-Ta'allum</span>
+            <a href="https://whatsapp.com/channel/0029VaqYTENLdQedSQ1l9I3d" target="_blank">
+                <div class="contact-card">
+                    <span class="contact-emoji">📢</span>
+                    <div class="contact-details">
+                        <span class="contact-category">SALURAN WHATSAPP</span>
+                        <span class="contact-value">Markaz At-Ta'allum</span>
+                    </div>
                 </div>
-            </div>
+            </a>
 
-            <div class="contact-card">
-                <img src="logo.jpeg" alt="Instagram Icon" class="contact-icon mix-blend-fix">
-                <div class="contact-details">
-                    <span class="contact-category">INSTAGRAM</span>
-                    <span class="contact-value">@markaz_attaallum</span>
+            <a href="https://www.instagram.com/attaallumarkaz?igsh=ZTVkMDF1azgzNTZo" target="_blank">
+                <div class="contact-card">
+                    <span class="contact-emoji">📸</span>
+                    <div class="contact-details">
+                        <span class="contact-category">INSTAGRAM</span>
+                        <span class="contact-value">@attaallumarkaz</span>
+                    </div>
                 </div>
-            </div>
+            </a>
+
+            <a href="https://linktr.ee/attaallumofc?utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank">
+                <div class="contact-card">
+                    <span class="contact-emoji">🔗</span>
+                    <div class="contact-details">
+                        <span class="contact-category">LINKTREE</span>
+                        <span class="contact-value">Banyak Tautan Resmi</span>
+                    </div>
+                </div>
+            </a>
         </div>
     </section>
 
     <script>
-        // Tangkap elemen modal dan tombolnya
         const modal = document.getElementById('entrance-modal');
         const exploreBtn = document.getElementById('explore-btn-modal');
 
-        // Fungsi untuk menyembunyikan modal dengan animasi
         exploreBtn.addEventListener('click', () => {
-            modal.classList.add('hide'); // Menambah class hide (trigger CSS transition)
+            modal.classList.add('hide'); 
         });
     </script>
 
