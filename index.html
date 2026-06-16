@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* TEMA BIRU GELAP AT-TA'ALLUM */
         :root {
-            --bg-main: #0B1120;       /* Biru Sangat Gelap (Background) */
-            --card-blue: #1E293B;     /* Biru Navy (Warna Kotak) */
-            --accent-blue: #3B82F6;   /* Biru Terang (Tombol/Aksen) */
+            --bg-main: #0B1120;       
+            --card-blue: #1E293B;     
+            --accent-blue: #3B82F6;   
             --text-light: #F8FAFC;
             --text-muted: #94A3B8;
         }
@@ -25,7 +24,7 @@
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            height: 100vh; /* Bikin posisi persis di tengah layar */
+            height: 100vh; 
             padding: 20px;
         }
 
@@ -37,7 +36,7 @@
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            border-top: 4px solid var(--accent-blue); /* Garis aksen biru di atas */
+            border-top: 4px solid var(--accent-blue);
         }
 
         .logo-placeholder {
@@ -49,7 +48,6 @@
         .login-container h1 { font-size: 1.8rem; margin-bottom: 5px; }
         .login-container p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 40px; }
 
-        /* Tombol Login Google */
         .btn-google {
             display: flex;
             align-items: center;
@@ -64,17 +62,13 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-decoration: none;
         }
 
         .btn-google img { width: 24px; margin-right: 10px; }
-
         .btn-google:hover {
             background-color: #f1f1f1;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255,255,255,0.1);
         }
-
     </style>
 </head>
 <body>
@@ -90,5 +84,53 @@
         </button>
     </div>
 
-    </body>
+    <script type="module">
+        // Import SDK Firebase Auth versi modular (terbaru & ringan)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        // ⚠️ GANTI ISI DI DALAM SINI PAKE CONFIG RAHASIA DARI FIREBASE LU BESOK/SORE INI!
+        const firebaseConfig = {
+            apiKey: "AIzaSyDEK56Ry_tNLxEfrLpPyy1Fb7zp1kyTYpQ",
+            authDomain: "attaallum-lms.firebaseapp.com",
+            projectId: "attaallum-lms",
+            storageBucket: "attaallum-lms.firebasestorage.app",
+            messagingSenderId: "1076428842924",
+            appId: "1:1076428842924:web:f9aabc6ac47a02161e3c09"
+        };
+
+        // Konek ke Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        // Targetin tombol login
+        const loginBtn = document.getElementById('loginBtn');
+
+        loginBtn.addEventListener('click', () => {
+            // Panggil pop-up login Google resmi
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    const user = result.user;
+                    console.log("Sukses Login bray! Nama:", user.displayName);
+                    console.log("Email:", user.email);
+                    
+                    // Simpan nama & foto profil di memori browser biar bisa dipanggil di Dashboard ntar
+                    localStorage.setItem("userName", user.displayName);
+                    localStorage.setItem("userEmail", user.email);
+                    localStorage.setItem("userPhoto", user.photoURL);
+
+                    alert("Selamat Datang, " + user.displayName + "!");
+                    
+                    // Lempar santri ke halaman utama setelah sukses login!
+                    window.location.href = "dashboard.html";
+                })
+                .catch((error) => {
+                    console.error("Gagal Login, error code:", error.code);
+                    alert("Waduh, login gagal bray: " + error.message);
+                });
+        });
+    </script>
+
+</body>
 </html>
