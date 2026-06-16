@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Markaz At-Ta'allum</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
             --bg-gradient: radial-gradient(circle at center, #0B1528 0%, #050814 100%);
             --card-blue: rgba(14, 22, 41, 0.75);     
-            --accent-gold: #F59E0B;   /* Warna Kuning Emas At-Ta'allum */
-            --accent-gold-hover: #D97706;
+            --accent-gold: #F59E0B;   
             --text-light: #F8FAFC;
             --text-muted: #64748B;
         }
@@ -21,7 +22,7 @@
             margin: 0; 
             padding: 0; 
             box-sizing: border-box; 
-            font-family: 'Inter', sans-serif; 
+            font-family: 'Plus Jakarta Sans', sans-serif; /* FONT BARU DI SINI BRAY */
         }
         
         body { 
@@ -35,7 +36,6 @@
             overflow: hidden;
         }
 
-        /* Container Utama Wrapper Transparan ala iOS/Modern Web */
         .login-card {
             background: var(--card-blue);
             width: 100%;
@@ -45,10 +45,9 @@
             text-align: center;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px); /* Efek kaca blur halus */
+            backdrop-filter: blur(10px); 
         }
 
-        /* Logo Glowing Efek Neon */
         .logo-container {
             position: relative;
             width: 110px;
@@ -67,7 +66,6 @@
             animation: float 4s ease-in-out infinite;
         }
 
-        /* Cahaya Biru/Putih di Belakang Logo */
         .logo-glow {
             position: absolute;
             width: 90px;
@@ -78,27 +76,29 @@
             filter: blur(5px);
         }
 
-        /* Branding Text */
+        /* TIPOGRAFI BARU - LEBIH RAPET DAN TEGAS */
         .login-card h1 { 
-            font-size: 1.8rem; 
+            font-size: 1.9rem; 
             font-weight: 800; 
-            letter-spacing: -0.5px;
-            margin-bottom: 8px; 
+            letter-spacing: -1px; /* Bikin font makin nempel premium */
+            line-height: 1.2;
+            margin-bottom: 4px;
         }
 
         .login-card h1 span {
-            color: #3B82F6; /* Warna biru aksen sobat ta'allum */
+            color: #3B82F6; 
         }
 
         .login-card p.subtitle { 
             color: var(--text-muted); 
-            font-size: 0.95rem; 
-            line-height: 1.5;
+            font-size: 0.9rem; 
+            line-height: 1.6;
+            margin-top: 15px;
             margin-bottom: 40px; 
-            font-weight: 400;
+            font-weight: 500;
         }
 
-        /* TOMBOL KUNING EMAS GLOWING NEON (MASTERPIECE LU) */
+        /* TOMBOL "SIGN IN WITH GOOGLE" GLOWING */
         .btn-login-gold {
             display: flex;
             align-items: center;
@@ -108,8 +108,8 @@
             color: #050814;
             padding: 16px;
             border: none;
-            border-radius: 50px; /* Melingkar penuh biar estetik */
-            font-size: 1rem;
+            border-radius: 50px; 
+            font-size: 0.95rem;
             font-weight: 700;
             letter-spacing: 0.5px;
             cursor: pointer;
@@ -118,12 +118,11 @@
         }
 
         .btn-login-gold i {
-            font-size: 1.2rem;
-            margin-right: 12px;
+            font-size: 1.1rem;
+            margin-right: 10px;
             transition: transform 0.3s ease;
         }
 
-        /* Efek Hover Glowing Hidup */
         .btn-login-gold:hover {
             transform: translateY(-3px);
             background: linear-gradient(135deg, #FBBF24 0%, var(--accent-gold) 100%);
@@ -131,15 +130,9 @@
         }
 
         .btn-login-gold:hover i {
-            transform: translateX(3px); /* Efek panah geser dikit pas dihover */
+            transform: translateX(3px); 
         }
 
-        .btn-login-gold:active {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
-        }
-
-        /* Animasi Mengambang untuk Logo */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-8px); }
@@ -157,10 +150,10 @@
 
         <h1>Selamat Datang <span>Sobat</span></h1>
         <h1>Attaallum</h1>
-        <p class="subtitle">Waduh pendidikan terpadu untuk mengembangkan ilmu, adab, dan percaya diri.</p>
+        <p class="subtitle">Wadah pendidikan terpadu untuk mengembangkan ilmu, adab, dan percaya diri.</p>
 
         <button class="btn-login-gold" id="loginBtn">
-            <i class="fa-solid fa-right-to-bracket"></i> LOG IN KE RUANG MURID
+            <i class="fa-fab fa-google"></i> Sign In with Google
         </button>
     </div>
 
@@ -189,7 +182,6 @@
                 signInWithPopup(auth, provider)
                     .then((result) => {
                         const user = result.user;
-                        
                         localStorage.setItem("userName", user.displayName);
                         localStorage.setItem("userEmail", user.email);
                         localStorage.setItem("userPhoto", user.photoURL);
