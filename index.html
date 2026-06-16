@@ -7,7 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
@@ -22,7 +21,7 @@
             margin: 0; 
             padding: 0; 
             box-sizing: border-box; 
-            font-family: 'Plus Jakarta Sans', sans-serif; /* FONT BARU DI SINI BRAY */
+            font-family: 'Plus Jakarta Sans', sans-serif; 
         }
         
         body { 
@@ -48,39 +47,40 @@
             backdrop-filter: blur(10px); 
         }
 
+        /* CONTAINER LOGO ATTAALLUM DI ATAS */
         .logo-container {
             position: relative;
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 30px auto;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px auto;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .logo-icon {
-            font-size: 4rem;
-            color: var(--text-light);
+        .logo-attaallum {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
             z-index: 2;
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
             animation: float 4s ease-in-out infinite;
         }
 
         .logo-glow {
             position: absolute;
-            width: 90px;
-            height: 90px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(59, 130, 246, 0) 70%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0) 70%);
             border-radius: 50%;
             z-index: 1;
             filter: blur(5px);
         }
 
-        /* TIPOGRAFI BARU - LEBIH RAPET DAN TEGAS */
         .login-card h1 { 
             font-size: 1.9rem; 
             font-weight: 800; 
-            letter-spacing: -1px; /* Bikin font makin nempel premium */
+            letter-spacing: -1px; 
             line-height: 1.2;
             margin-bottom: 4px;
         }
@@ -98,7 +98,7 @@
             font-weight: 500;
         }
 
-        /* TOMBOL "SIGN IN WITH GOOGLE" GLOWING */
+        /* TOMBOL KUNING DENGAN LOGO GOOGLE DI DALAMNYA */
         .btn-login-gold {
             display: flex;
             align-items: center;
@@ -113,24 +113,21 @@
             font-weight: 700;
             letter-spacing: 0.5px;
             cursor: pointer;
-            box-shadow: 0 0 0px rgba(245, 158, 11, 0);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .btn-login-gold i {
-            font-size: 1.1rem;
-            margin-right: 10px;
-            transition: transform 0.3s ease;
+        /* Gaya Khusus untuk Logo Google di Samping Teks */
+        .logo-google-icon {
+            width: 22px;
+            height: 22px;
+            margin-right: 12px; /* Jarak antara logo google dan teks */
+            object-fit: contain;
         }
 
         .btn-login-gold:hover {
             transform: translateY(-3px);
             background: linear-gradient(135deg, #FBBF24 0%, var(--accent-gold) 100%);
             box-shadow: 0 8px 25px rgba(245, 158, 11, 0.45), 0 0 15px rgba(245, 158, 11, 0.3);
-        }
-
-        .btn-login-gold:hover i {
-            transform: translateX(3px); 
         }
 
         @keyframes float {
@@ -145,7 +142,7 @@
     <div class="login-card">
         <div class="logo-container">
             <div class="logo-glow"></div>
-            <i class="fa-solid fa-graduation-cap logo-icon"></i>
+            <img src="logo.png" alt="Logo Attaallum" class="logo-attaallum">
         </div>
 
         <h1>Selamat Datang <span>Sobat</span></h1>
@@ -153,7 +150,8 @@
         <p class="subtitle">Wadah pendidikan terpadu untuk mengembangkan ilmu, adab, dan percaya diri.</p>
 
         <button class="btn-login-gold" id="loginBtn">
-            <i class="fa-fab fa-google"></i> Sign In with Google
+            <img src="google.png" alt="Google" class="logo-google-icon"> 
+            Sign In with Google
         </button>
     </div>
 
