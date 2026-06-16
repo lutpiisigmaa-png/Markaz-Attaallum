@@ -3,121 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attaallum LMS | Portal Santri</title>
+    <title>Login | Markaz At-Ta'allum LMS</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* TEMA BIRU GELAP AT-TA'ALLUM */
         :root {
-            --bg-dark: #121212;
-            --card-dark: #1E1E1E;
-            --wine-red: #7A1F2B;
-            --gold: #D4AF37;
-            --text-light: #F8F7F3;
-            --text-muted: #A0A0A0;
+            --bg-main: #0B1120;       /* Biru Sangat Gelap (Background) */
+            --card-blue: #1E293B;     /* Biru Navy (Warna Kotak) */
+            --accent-blue: #3B82F6;   /* Biru Terang (Tombol/Aksen) */
+            --text-light: #F8FAFC;
+            --text-muted: #94A3B8;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-light); padding-bottom: 80px; }
-
-        /* Header Profil */
-        .header {
-            padding: 30px 20px;
-            background: linear-gradient(135deg, var(--wine-red), #3A0F14);
-            border-bottom: 2px solid var(--gold);
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .user-info h1 { font-size: 1.5rem; margin-bottom: 5px; }
-        .user-info p { color: var(--gold); font-size: 0.9rem; font-weight: 600; }
-        .avatar { width: 50px; height: 50px; background-color: var(--gold); border-radius: 50%; }
-
-        /* Motivasi Hari Ini */
-        .motivation-card {
-            background-color: var(--card-dark);
-            margin: 20px; padding: 20px;
-            border-left: 4px solid var(--gold);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
-        .motivation-card h3 { font-size: 1rem; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;}
-        .motivation-card p { font-size: 1.1rem; font-weight: 600; font-style: italic; }
-
-        /* Menu Utama (Grid) */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            padding: 0 20px;
-        }
-        .menu-btn {
-            background-color: var(--card-dark);
-            border: 1px solid #333;
-            padding: 25px 15px;
-            border-radius: 15px;
-            text-align: center;
+        
+        body { 
+            background-color: var(--bg-main); 
             color: var(--text-light);
-            text-decoration: none;
-            transition: all 0.3s;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; /* Bikin posisi persis di tengah layar */
+            padding: 20px;
         }
-        .menu-btn i { font-size: 2rem; color: var(--wine-red); margin-bottom: 15px; }
-        .menu-btn h4 { font-size: 0.95rem; font-weight: 600; }
-        .menu-btn:hover { border-color: var(--gold); transform: translateY(-3px); }
 
-        /* Navigasi Bawah ala Aplikasi Asli */
-        .bottom-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background-color: var(--card-dark);
-            display: flex; justify-content: space-around;
-            padding: 15px 0; border-top: 1px solid #333;
+        .login-container {
+            background-color: var(--card-blue);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border-top: 4px solid var(--accent-blue); /* Garis aksen biru di atas */
         }
-        .nav-item { color: var(--text-muted); text-align: center; text-decoration: none; font-size: 0.8rem; }
-        .nav-item i { font-size: 1.2rem; display: block; margin-bottom: 5px; }
-        .nav-item.active { color: var(--gold); }
+
+        .logo-placeholder {
+            font-size: 3.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 15px;
+        }
+
+        .login-container h1 { font-size: 1.8rem; margin-bottom: 5px; }
+        .login-container p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 40px; }
+
+        /* Tombol Login Google */
+        .btn-google {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background-color: white;
+            color: #333;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-google img { width: 24px; margin-right: 10px; }
+
+        .btn-google:hover {
+            background-color: #f1f1f1;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <div class="user-info">
-            <h1>Ahlan wa Sahlan,</h1>
-            <p><i class="fa-solid fa-user-graduate"></i> Santri I'dadi</p>
-        </div>
-        <div class="avatar"></div>
+    <div class="login-container">
+        <i class="fa-solid fa-graduation-cap logo-placeholder"></i>
+        <h1>Markaz At-Ta'allum</h1>
+        <p>Portal LMS Resmi Santri</p>
+
+        <button class="btn-google" id="loginBtn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo">
+            Lanjutkan dengan Google
+        </button>
     </div>
 
-    <div class="motivation-card">
-        <h3><i class="fa-solid fa-fire"></i> Motivasi Hari Ini</h3>
-        <p>"Barangsiapa bersungguh-sungguh, sesungguhnya kesungguhannya itu adalah untuk dirinya sendiri."</p>
-    </div>
-
-    <div class="menu-grid">
-        <a href="#" class="menu-btn">
-            <i class="fa-solid fa-qrcode"></i>
-            <h4>Absensi Harian</h4>
-        </a>
-        <a href="#" class="menu-btn">
-            <i class="fa-solid fa-book-open"></i>
-            <h4>Materi & Video</h4>
-        </a>
-        <a href="#" class="menu-btn">
-            <i class="fa-solid fa-clipboard-list"></i>
-            <h4>Tugas & Quiz</h4>
-        </a>
-        <a href="#" class="menu-btn">
-            <i class="fa-solid fa-chart-pie"></i>
-            <h4>Progress Belajar</h4>
-        </a>
-    </div>
-
-    <div class="bottom-nav">
-        <a href="#" class="nav-item active"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="#" class="nav-item"><i class="fa-solid fa-bullhorn"></i> Info</a>
-        <a href="#" class="nav-item"><i class="fa-solid fa-user"></i> Profil</a>
-    </div>
-
-</body>
+    </body>
 </html>
